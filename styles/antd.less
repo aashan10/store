@@ -1,0 +1,37 @@
+@import "~antd/dist/antd.less";
+
+@primary-color: #5ece7b;
+@layout-header-background: #fff;
+
+.ant-layout-header {
+  display: flex;
+  flex-direction: row;
+
+  div {
+    display: flex;
+    flex: 1;
+  }
+
+  .header-right {
+    justify-content: flex-end;
+    padding-top: 15px;
+
+    button {
+      margin-left: 10px;
+    }
+
+    .cart-button {
+      display: inline-block;
+      float: right;
+
+      span {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+
+.ant-popconfirm  {
+  z-index: 1100;
+}
