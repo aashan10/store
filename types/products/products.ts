@@ -10,3 +10,5 @@ interface ProductInterface {
     max_qty: number,
     thumbnail: string
 }
+
+export type {ProductInterface}
