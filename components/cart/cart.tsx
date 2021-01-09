@@ -16,7 +16,7 @@ class Cart extends React.Component {
                                 <List.Item.Meta
                                     title={item.name}
                                     description={'Rs. ' + item.base_price}
-                                    avatar={<Avatar src={item.image} /> }
+                                    avatar={<Avatar src={item.image}/>}
                                 />
                                 <div>
                                     <InputNumber type='number' value={item.quantity} onChange={(text) => {
@@ -26,14 +26,12 @@ class Cart extends React.Component {
                                             cart.modifyCartItem(item);
                                         }
                                     }}/>
-                                    <Popconfirm placement={'left'} title={'Remove this item from cart?'} onConfirm={() => {
-                                        cart.removeFromCart(item);
-                                        message.success('Removed product from cart!');
-                                    }}>
-                                        <Button danger={true} onClick={() => {
-
-                                        }} type={'link'}>
-                                            <CloseCircleOutlined/>
+                                    <Popconfirm placement={'left'} title={'Remove this item from cart?'}
+                                                onConfirm={() => {
+                                                    cart.removeFromCart(item);
+                                                    message.success('Removed product from cart!');
+                                                }}>
+                                        <Button danger={true} type={'link'} icon={<CloseCircleOutlined/>}>
                                         </Button>
                                     </Popconfirm>
                                 </div>
@@ -47,6 +45,7 @@ class Cart extends React.Component {
                 </List.Item>
                 <List.Item>
                     <Button block={true} type={'primary'}>Checkout</Button>
+                    <Button block={true} type={'default'}>View Cart</Button>
                 </List.Item>
             </List>
         )

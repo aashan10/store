@@ -1,9 +1,9 @@
 import React from 'react';
-import GuestTwoColumnLayout from "../../layouts/guest/two-column";
+import Link from 'next/link';
 import {Row, Col, Card, Button} from 'antd';
 import {CartConsumer} from '../../providers/cart/cart-provider'
+import GuestTwoColumnLayout from "../../layouts/guest/two-column";
 import {ShoppingCartOutlined, LoadingOutlined} from '@ant-design/icons';
-import Link from 'next/link';
 import {ProductList, ProductListConsumer} from "../../providers/product-list/product-list";
 
 class StoreHomePage extends React.Component<any, any> {
@@ -18,24 +18,23 @@ class StoreHomePage extends React.Component<any, any> {
                 <ProductListConsumer>
                     {
                         productList => (
-
-                            <Row style={{margin: 10}}>
-
+                            <Row>
                                 {
-                                    productList.loading ? <LoadingOutlined/> : (
+                                    productList.loading ? <LoadingOutlined /> : (
                                         <>
                                             <Col span={6} sm={24} xs={24} md={6} lg={4} xl={4}
-                                                 style={{paddingRight: 0, marginBottom: 10}}>
+                                                 style={{padding: 10}}>
                                                 <Card hoverable={true}>
                                                     <strong> Filter Products </strong>
                                                 </Card>
                                             </Col>
-                                            <Col span={18} xs={24} sm={24} md={18} lg={20} xl={20}>
+                                            <Col span={18} style={{padding: 10}} xs={24} sm={24} md={18} lg={20}
+                                                 xl={20}>
                                                 <Row gutter={[16, 16]}>
                                                     {
                                                         productList.filteredProducts.map(product => {
                                                             return (
-                                                                <Col span={4} xs={24} sm={12} md={8} lg={6} xl={4}>
+                                                                <Col key={product.sku} span={4} xs={24} sm={12} md={8} lg={6} xl={4}>
                                                                     <Card
                                                                         hoverable
                                                                         style={{width: '100%'}}
