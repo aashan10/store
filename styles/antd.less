@@ -3,6 +3,39 @@
 @primary-color: #5ece7b;
 @layout-header-background: #fff;
 
+.ant-card.ant-card-hoverable {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+@media (min-width: 1200px) {
+  .pdp-content {
+    margin-left: 15% !important;
+    margin-right: 15% !important;
+
+    .ant-col {
+      padding: 5px !important;
+    }
+  }
+}
+
+
+.pdp-product-image-carousel {
+
+  .ant-card-cover {
+    display: block;
+
+    .ant-image {
+      display: block
+    }
+  }
+
+  .ant-card-body {
+    display: none;
+  }
+}
+
 .ant-layout-header {
   display: flex;
   flex-direction: row;
@@ -32,6 +65,6 @@
 }
 
 
-.ant-popconfirm  {
+.ant-popconfirm {
   z-index: 1100;
 }

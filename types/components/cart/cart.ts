@@ -11,7 +11,8 @@ interface CartItemInterface {
     base_price: number,
     quantity: number,
     name: string,
-    image: string
+    image: string,
+    description: string
 }
 
 export type { CartStateInterface, CartPropsInterface, CartItemInterface };
