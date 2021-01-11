@@ -14,73 +14,96 @@ class CartPage extends React.Component<any, any> {
         return (
             <GuestTwoColumnLayout>
                 <Row style={{marginTop: 15}}>
-                    <Col offset={4} span={16}>
+                    <Col className={'cart-container'}>
                         <CartConsumer>
                             {
                                 cart => (
-                                    <Card hoverable cover={<Table dataSource={cart.items} columns={[
-                                        {
-                                            title: '', dataIndex: 'id', key: 'id', render: (index, item) => {
-                                                return (
-                                                    <Image style={{height: 60, width: 60}} src={item.image}/>
-                                                )
-                                            }
-                                        },
-                                        {
-                                            title: 'Product Name',
-                                            dataIndex: 'name',
-                                            key: 'id',
-                                            render: (index, item) => {
-                                                return (
-                                                    <Link href={'/products/' + item.id}>{item.name}</Link>
-                                                )
-                                            }
-                                        },
-                                        {
-                                            title: 'Quantity',
-                                            dataIndex: 'quantity',
-                                            key: 'id',
-                                            render: (index, item) => {
-                                                return (
-                                                    <strong>{item.quantity}</strong>
-                                                )
-                                            }
-                                        },
-                                        {
-                                            title: 'Price per Item',
-                                            dataIndex: 'base_price',
-                                            key: 'id',
-                                            render: (index, item) => {
-                                                return (
-                                                    <strong>Rs. {item.base_price}</strong>
-                                                )
-                                            }
-                                        },
-                                        {
-                                            title: 'Total',
-                                            dataIndex: 'total_price',
-                                            key: 'id',
-                                            render: (index, item) => {
-                                                return (
-                                                    <strong>Rs. {item.base_price * item.quantity}</strong>
-                                                )
-                                            }
-                                        },
-                                        {
-                                            title: 'Action',
-                                            dataIndex: 'action',
-                                            key: 'id',
-                                            render: (index, item) => {
-                                                return (
-                                                    <Popconfirm onConfirm={() => {
-                                                        cart.removeFromCart(item);
-                                                    }} placement={'left'} title={'Remove ' + item.name + ' from cart?'}>
-                                                        <Button icon={<CloseCircleFilled/>} type={'link'} danger/>
-                                                    </Popconfirm>
-                                                )
-                                            }
-                                        },
-                                    ]} pagination={false} size={'large'}/>}>
+                                    <Card hoverable cover={
+                                        <Table dataSource={cart.items}
+                                               columns={
+                                                   [
+                                                       {
+                                                           title: '',
+                                                           dataIndex: 'id',
+                                                           key: 'id',
+                                                           responsive: ['md'],
+                                                           render: (index, item) => {
+                                                               return (
+                                                                   <Image style={{
+                                                                       height: 60,
+                                                                       width: 60
+                                                                   }}
+                                                                          src={item.image}/>
+                                                               )
+                                                           }
+                                                       },
+                                                       {
+                                                           title: 'Product Name',
+                                                           dataIndex: 'name',
+                                                           key: 'id',
+                                                           render: (index, item) => {
+                                                               return (
+                                                                   <Link
+                                                                       href={'/products/' + item.id}>{item.name}</Link>
+                                                               )
+                                                           }
+                                                       },
+                                                       {
+                                                           title: 'Quantity',
+                                                           dataIndex: 'quantity',
+                                                           key: 'id',
+                                                           // responsive: ['md'],
+                                                           render: (index, item) => {
+                                                               return (
+                                                                   <strong>{item.quantity}</strong>
+                                                               )
+                                                           }
+                                                       },
+                                                       {
+                                                           title: 'Price per Item',
+                                                           dataIndex: 'base_price',
+                                                           // responsive: ['md'],
+                                                           key: 'id',
+                                                           render: (index, item) => {
+                                                               return (
+                                                                   <strong>Rs. {item.base_price}</strong>
+                                                               )
+                                                           }
+                                                       },
+                                                       {
+                                                           title: 'Total',
+                                                           dataIndex: 'total_price',
+                                                           key: 'id',
+                                                           responsive: ['md'],
+                                                           render: (index, item) => {
+                                                               return (
+                                                                   <strong>Rs. {item.base_price * item.quantity}</strong>
+                                                               )
+                                                           }
+                                                       },
+                                                       {
+                                                           title: 'Action',
+                                                           dataIndex: 'action',
+                                                           key: 'id',
+                                                           render: (index, item) => {
+                                                               return (
+                                                                   <Popconfirm onConfirm={() => {
+                                                                       cart.removeFromCart(item);
+                                                                   }} placement={'left'}
+                                                                               title={'Remove ' + item.name + ' from cart?'}>
+                                                                       <Button
+                                                                           icon={
+                                                                               <CloseCircleFilled/>}
+                                                                           type={'link'} danger/>
+                                                                   </Popconfirm>
+                                                               )
+                                                           }
+                                                       },
+                                                   ]
+                                               }
+                                               pagination={false}
+                                               size={'large'}/>
+                                    }>
                                         <List>
                                             {
                                                 cart.items.length ? (
