@@ -3,6 +3,7 @@ import {Badge, Button, Dropdown, Layout} from "antd";
 import {Cart} from "../";
 import {ShoppingCartOutlined} from '@ant-design/icons';
 import {CartConsumer, Cart as CartContext} from '../../providers/cart/cart-provider';
+import Link from 'next/link';
 
 const {Header} = Layout;
 
@@ -23,7 +24,7 @@ class GuestHeader extends React.Component<any, any> {
         return (
             <Header>
                 <div className={'header-left'}>
-
+                    <Link href={'/'}>Store</Link>
                 </div>
                 <div className={'header-center'}>
 
@@ -35,7 +36,8 @@ class GuestHeader extends React.Component<any, any> {
                         {
                             cartContext => (
                                 <Dropdown arrow placement={'bottomRight'} overlay={cart} trigger={['click']}>
-                                    <Badge count={cartContext.items.length} className={'cart-trigger'} dot={cartContext.items.length > 0}>
+                                    <Badge count={cartContext.items.length} className={'cart-trigger'}
+                                           dot={cartContext.items.length > 0}>
                                         <Button type={'link'} icon={<ShoppingCartOutlined/>}>Cart </Button>
                                     </Badge>
                                 </Dropdown>

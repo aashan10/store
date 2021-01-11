@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import {Row, Col, Card, Button} from 'antd';
+import {Row, Col, Card, Button, Skeleton} from 'antd';
 import {CartConsumer} from '../../providers/cart/cart-provider'
 import GuestTwoColumnLayout from "../../layouts/guest/two-column";
 import {ShoppingCartOutlined, LoadingOutlined, HeartOutlined, ShareAltOutlined} from '@ant-design/icons';
@@ -20,15 +20,41 @@ class StoreHomePage extends React.Component<any, any> {
                     {
                         productList => (
                             <Row>
+                                <Col span={6} sm={24} xs={24} md={6} lg={4} xl={4}
+                                     style={{padding: 10}}>
+                                    <Card hoverable={true}>
+                                        <strong> Filter Products </strong>
+                                    </Card>
+                                </Col>
                                 {
-                                    productList.loading ? <LoadingOutlined/> : (
+                                    productList.loading ? (
+                                        <Col span={18} style={{padding: 10}} xs={24} sm={24} md={18} lg={20}
+                                             xl={20}>
+                                            <Row gutter={[16, 16]}>
+                                                {
+                                                    (new Array(10)).fill({}).map(index => {
+                                                        return (
+                                                            <Col key={index} span={4} xs={24} sm={12} md={8}
+                                                                 lg={6} xl={4}>
+                                                                <Card hoverable
+                                                                      style={{width: '100%'}}
+                                                                      cover={<Skeleton.Image style={{width: '100%'}}/>}
+                                                                >
+                                                                    <Skeleton active loading/>
+                                                                    <Row justify={'space-between'}>
+                                                                        <Skeleton.Button/>
+                                                                        <Skeleton.Button/>
+                                                                        <Skeleton.Button/>
+                                                                    </Row>
+                                                                </Card>
+                                                            </Col>
+                                                        )
+                                                    })
+                                                }
+                                            </Row>
+                                        </Col>
+                                    ) : (
                                         <>
-                                            <Col span={6} sm={24} xs={24} md={6} lg={4} xl={4}
-                                                 style={{padding: 10}}>
-                                                <Card hoverable={true}>
-                                                    <strong> Filter Products </strong>
-                                                </Card>
-                                            </Col>
                                             <Col span={18} style={{padding: 10}} xs={24} sm={24} md={18} lg={20}
                                                  xl={20}>
                                                 <Row gutter={[16, 16]}>
@@ -38,7 +64,8 @@ class StoreHomePage extends React.Component<any, any> {
                                                                 <Col key={product.sku} span={4} xs={24} sm={12} md={8}
                                                                      lg={6} xl={4}>
                                                                     <Card
-                                                                        onClick={() => {
+                                                                        onClick={(event) => {
+                                                                            event.preventDefault();
                                                                             this.props.router.push('/products/' + product.id);
                                                                         }}
                                                                         hoverable
@@ -54,18 +81,22 @@ class StoreHomePage extends React.Component<any, any> {
                                                                                 <CartConsumer>
                                                                                     {
                                                                                         cart => (
-                                                                                            <Button onClick={() => {
-                                                                                                cart.addToCart({
-                                                                                                    ...product,
-                                                                                                    quantity: 1
-                                                                                                })
-                                                                                            }} type={'link'} icon={
-                                                                                                <ShoppingCartOutlined/>} />
+                                                                                            <Button
+                                                                                                onClick={(event) => {
+                                                                                                    event.preventDefault();
+                                                                                                    cart.addToCart({
+                                                                                                        ...product,
+                                                                                                        quantity: 1
+                                                                                                    })
+                                                                                                }} type={'link'} icon={
+                                                                                                <ShoppingCartOutlined/>}/>
                                                                                         )
                                                                                     }
                                                                                 </CartConsumer>
-                                                                                <Button type={'link'} icon={<HeartOutlined /> } />
-                                                                                <Button type={'link'} icon={<ShareAltOutlined /> } />
+                                                                                <Button type={'link'}
+                                                                                        icon={<HeartOutlined/>}/>
+                                                                                <Button type={'link'}
+                                                                                        icon={<ShareAltOutlined/>}/>
                                                                             </Row>
                                                                         </div>
                                                                     </Card>
