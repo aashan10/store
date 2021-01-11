@@ -7,6 +7,7 @@ interface CartPropsInterface {
 }
 
 interface CartItemInterface {
+    id: string|number,
     sku: string,
     base_price: number,
     quantity: number,

@@ -3,6 +3,7 @@ import React from 'react';
 import {CartConsumer, Cart as CartContext} from '../../providers/cart/cart-provider';
 import {CartItemInterface, CartProviderProps} from '../../types';
 import {CloseCircleOutlined} from '@ant-design/icons';
+import Link from 'next/link';
 
 class Cart extends React.Component {
 
@@ -45,7 +46,9 @@ class Cart extends React.Component {
                 </List.Item>
                 <List.Item>
                     <Button block={true} type={'primary'}>Checkout</Button>
-                    <Button block={true} type={'default'}>View Cart</Button>
+                    <Link href={'/cart'}>
+                        <Button block={true} type={'link'}>View Cart</Button>
+                    </Link>
                 </List.Item>
             </List>
         )
@@ -69,7 +72,7 @@ class Cart extends React.Component {
             <CartConsumer>
                 {
                     (cart: CartProviderProps) => (
-                        <Card style={{width: 400}}>
+                        <Card hoverable className={'minicart'}>
                             {
                                 cart.items.length > 0
                                     ? this.renderCart(cart)

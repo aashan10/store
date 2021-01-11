@@ -34,8 +34,8 @@ class GuestHeader extends React.Component<any, any> {
                     <CartConsumer>
                         {
                             cartContext => (
-                                <Dropdown overlay={cart} trigger={['click']}>
-                                    <Badge count={cartContext.items.length} dot={cartContext.items.length > 0}>
+                                <Dropdown arrow placement={'bottomRight'} overlay={cart} trigger={['click']}>
+                                    <Badge count={cartContext.items.length} className={'cart-trigger'} dot={cartContext.items.length > 0}>
                                         <Button type={'link'} icon={<ShoppingCartOutlined/>}>Cart </Button>
                                     </Badge>
                                 </Dropdown>
